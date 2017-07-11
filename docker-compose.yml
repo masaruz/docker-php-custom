@@ -2,12 +2,12 @@ version: '3'
 services:
     web:
         container_name: web
-        image: masaruz/php-custom
+        image: masaruz/php:7.1-custom-ext
         volumes:
             - ./src:/var/www/html
         ports:
             - 80:80
-        links: 
+        links:
             - db
     db:
         container_name: db
