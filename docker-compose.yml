@@ -1,0 +1,25 @@
+version: '3'
+services:
+    web:
+        container_name: web
+        image: masaruz/php-custom
+        volumes:
+            - ./src:/var/www/html
+        ports:
+            - 80:80
+        links: 
+            - db
+    db:
+        container_name: db
+        image: mariadb
+        command: mysqld --character-set-server=utf8 --collation-server=utf8_unicode_ci --init-connect='SET NAMES UTF8;' --innodb-flush-log-at-trx-commit=0
+        restart: always
+        ports:
+            - 3306:3306
+        volumes:
+            - ./database:/var/lib/mysql
+        environment:
+            MYSQL_ROOT_PASSWORD: cscart
+            MYSQL_DATABASE: cscart
+            MYSQL_USER: cscart
+            MYSQL_PASSWORD: cscart
